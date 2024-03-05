@@ -1,11 +1,16 @@
-import { IFieldsRepository } from '../../interfaces/fields/IFieldsRepository';
-import type { ApiResponse, RequestParams } from "../../entities/Api"
-import { Field } from '../../entities/Field';
+import { IFieldsRepository } from '@domain/interfaces/fields/IFieldsRepository';
+import type { ApiResponse, RequestParams } from '@domain/entities/Api';
+import { Field } from '@domain/entities/Field';
+import { FieldsRepository } from '@infrastructure/repositories/fields/FieldsRepository.spec';
 
 export class FieldsService {
-  constructor(private readonly repository: IFieldsRepository) {}
+  constructor(
+    private readonly repository: FieldsRepository,
+  ) {}
 
-  getAvailableFields(params?: RequestParams): Promise<ApiResponse<Field>> {
-    return this.repository.getAll()
+  async getAvailableFields(
+    params?: RequestParams,
+  ): Promise<ApiResponse<Field>> {
+    return await this.repository.getAll();
   }
 }

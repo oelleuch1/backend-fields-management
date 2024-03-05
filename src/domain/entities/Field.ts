@@ -1,13 +1,24 @@
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-export interface Field {
-  id: string,
-  label: string,
-  location: FieldLocation
+export class Field {
+  @ApiProperty({ description: 'The id of the field' })
+  @IsString()
+  @IsNotEmpty()
+  id: string;
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  label: string;
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  location: FieldLocation;
   // ....
 }
 
 export interface FieldLocation {
-  id: string,
-  longitude: number
-  latitude: number
+  id: string;
+  longitude: number;
+  latitude: number;
 }
